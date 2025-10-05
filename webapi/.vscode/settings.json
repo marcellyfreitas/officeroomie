@@ -1,0 +1,21 @@
+{
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": true,
+    "files.exclude": {
+        "**/bin": true,
+        "**/obj": true,
+        "**/.vs": true,
+        "**/node_modules": true
+    },
+    "csharp.format.enable": true,
+    "csharp.suppressDotnetGenerateAssets": false,
+    "omnisharp.useGlobalMono": "auto",
+    "dotnet.defaultSolution": "YourProject.sln",
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "debug.openDebug": "neverOpen",
+    "dotnet.checkForSdkUpdates": false,
+    "dotnet.cli.enableTelemetry": false,
+}

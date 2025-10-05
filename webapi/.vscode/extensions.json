@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "ms-dotnettools.csharp", // Suporte para C# e .NET
+        "ms-azuretools.vscode-docker", // Suporte a Docker no VS Code
+        "eamodio.gitlens", // Melhoria na visualização do Git
+        "usernamehw.errorlens", // Destaca erros e warnings no código
+    ]
+}

@@ -1,0 +1,149 @@
+{
+	"React Native Functional Component": {
+		"prefix": "rnf",
+		"body": [
+			"import { ThemedText } from '@/components/ui/ThemedText';",
+			"import { ThemedView } from '@/components/ui/ThemedView';",
+			"",
+			"const $1${TM_FILENAME_BASE} = () => {",
+			"\treturn (",
+			"\t \t<ThemedView className=\"items-center justify-center flex-1\">",
+			"\t \t \t<ThemedText>$1${TM_FILENAME_BASE}</ThemedText>",
+			"\t \t</ThemedView>",
+			"\t);",
+			"};",
+			"",
+			"export default $1${TM_FILENAME_BASE};"
+		],
+		"description": "React Native Functional Component"
+	},
+	"Hook com useState, useCallback e useEffect": {
+		"prefix": "fetch-hook",
+		"body": [
+			"const [${1:list}, set${1/(.*)/${1:/capitalize}/}] = useState<${2:any[]}>([]);",
+			"const [${3:loading}, set${3/(.*)/${3:/capitalize}/}] = useState<boolean>(false);",
+			"",
+			"const fetchData = useCallback(async () => {",
+			"  set${3/(.*)/${3:/capitalize}/}(true);",
+			"",
+			"  try {",
+			"    const response = await new Promise(resolve => setTimeout(resolve, 1000));",
+			"",
+			"    set${1/(.*)/${1:/capitalize}/}([]);",
+			"  } catch (error) {",
+			"    console.error(error);",
+			"  } finally {",
+			"    set${3/(.*)/${3:/capitalize}/}(false);",
+			"  }",
+			"}, []);",
+			"",
+			"useEffect(() => {",
+			"  fetchData();",
+			"}, [fetchData]);"
+		],
+		"description": "Hook para carregar dados com useState, useCallback e useEffect"
+	},
+	"FlatList com RefreshControl": {
+		"prefix": "flatlist-refresh",
+		"body": [
+			"<FlatList",
+			"  data={${1:list}}",
+			"  keyExtractor={(item, index) => (index.toString())}",
+			"  refreshing={${2:loading}}",
+			"  contentContainerStyle={{ padding: 0, gap: 10 }}",
+			"  ListEmptyComponent={<${3:EmptyList} />} ",
+			"  renderItem={({ item, index }) => (",
+			"    <${4:Card} onPress={() => {}}>",
+			"      <View className=\"flex gap-4 p-5 border rounded-lg border-slate-300\">",
+			"        <Text>ITEM {index}</Text>",
+			"      </View>",
+			"    </${4:Card}>",
+			"  )}",
+			"  refreshControl={",
+			"    <RefreshControl",
+			"      refreshing={${2:loading}}",
+			"      onRefresh={() => { }}",
+			"      colors={['#007BFF']}",
+			"      progressBackgroundColor=\"#FFFFFF\"",
+			"    />",
+			"  }",
+			"/>"
+		],
+		"description": "FlatList com RefreshControl, EmptyComponent e estilo customizado"
+	},
+	"React Native useState Hook": {
+		"prefix": "usf",
+		"body": [
+			"const [$1, set$1] = useState($2);"
+		],
+		"description": "React Native useState Hook"
+	},
+	"React Native useEffect Hook": {
+		"prefix": "uef",
+		"body": [
+			"useEffect(() => {",
+			"  $1",
+			"}, []);"
+		],
+		"description": "React Native useEffect Hook"
+	},
+	"React Native Button": {
+		"prefix": "rnb",
+		"body": [
+			"<Button",
+			"  title=\"$1\"",
+			"  onPress={() => $2}",
+			"/>"
+		],
+		"description": "React Native Button Component"
+	},
+	"React Native FlatList": {
+		"prefix": "rnfl",
+		"body": [
+			"<FlatList",
+			"  data={$1}",
+			"  keyExtractor={(item) => item.id.toString()}",
+			"  renderItem={({ item }) => (",
+			"    <Text>{item.$2}</Text>",
+			"  )}",
+			"/>"
+		],
+		"description": "React Native FlatList Component"
+	},
+	"React Navigation Stack Navigator": {
+		"prefix": "rnsn",
+		"body": [
+			"import { createStackNavigator } from '@react-navigation/stack';",
+			"",
+			"const Stack = createStackNavigator();",
+			"",
+			"const $1Navigator = () => {",
+			"  return (",
+			"    <Stack.Navigator>",
+			"      <Stack.Screen",
+			"        name=\"$2\"",
+			"        component={$2}",
+			"        options={{ title: '$3' }}",
+			"      />",
+			"    </Stack.Navigator>",
+			"  );",
+			"};",
+			"",
+			"export default $1Navigator;"
+		],
+		"description": "React Navigation Stack Navigator"
+	},
+	"consoleLog": {
+		"prefix": "clg",
+		"body": [
+			"// eslint-disable-next-line no-console",
+			"console.log('$1');",
+		],
+		"description": "Displays a message in the console"
+	},
+	"consoleError": {
+		"prefix": "cer",
+		"body": "console.error(${1:error});",
+		"description": "Displays a message in the console and also includes a stack trace from where the method was called"
+	},
+}

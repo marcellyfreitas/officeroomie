@@ -1,0 +1,35 @@
+# Build artifacts
+bin/
+obj/
+obj/*
+
+# Configurações
+appsettings.json
+!appsettings.Development.json
+
+# IDEs
+.idea/
+*.vs/
+*.user
+*.suo
+
+# Logs e backups
+*.log
+*.tmp
+*.bak
+*.swp
+*.dmp
+
+# Ferramentas
+*.nupkg
+*.snupkg
+packages/
+TestResults/
+
+# Outros
+Dockerfile
+docker-compose.override.yml
+.DS_Store
+Thumbs.db
+*.pfx
+*.key
