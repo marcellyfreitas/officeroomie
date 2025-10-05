@@ -3,17 +3,19 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace WebApi.Models;
 
-public class Specialization
+public class AppointmentSchedule
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
 
-    [BsonElement("name")]
-    public string Name { get; set; } = "";
+    [BsonElement("appointmentDate")]
+    public DateTime InitialHour { get; set; }
 
-    [BsonElement("description")]
-    public string Description { get; set; } = "";
+    [BsonElement("roomId")]
+    public string RoomId { get; set; } = "";
+
+    public Room? Room { get; set; } = null;
 
     [BsonElement("createdAt")]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

@@ -2,14 +2,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebApi.Models.Dto;
 
-public class CreateAppointmentPublicDto
+public class UpdateAppointmentScheduleDto
 {
     [Required(ErrorMessage = "Campo {0} obrigatório.")]
-    public string AppointmentScheduleId { get; set; } = "";
+    public DateTime InitialHour { get; set; }
 
     [Required(ErrorMessage = "Campo {0} obrigatório.")]
-    public string Status { get; set; } = "";
+    public DateTime FinalHour { get; set; }
 
     [Required(ErrorMessage = "Campo {0} obrigatório.")]
-    public string Description { get; set; } = "";
+    public string RoomId { get; set; } = "";
 }

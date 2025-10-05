@@ -1,14 +1,12 @@
 namespace WebApi.Models.ViewModels;
 
-public class ScheduleViewModel
+public class AppointmentScheduleViewModel
 {
     public string Id { get; set; } = String.Empty;
 
-    public DateTime InitialHour { get; set; }
+    public DateTime AppointmentDate { get; set; }
 
-    public DateTime FinalHour { get; set; }
-
-    public MedicalViewModel? Medical { get; set; } = null;
+    public RoomViewModel? Room { get; set; } = null;
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 

@@ -12,8 +12,8 @@ public class Appointment
     [BsonElement("userId")]
     public string UserId { get; set; } = "";
 
-    [BsonElement("scheduleId")]
-    public string ScheduleId { get; set; } = "";
+    [BsonElement("appointmentScheduleId")]
+    public string AppointmentScheduleId { get; set; } = "";
 
     [BsonElement("status")]
     public string Status { get; set; } = "";
@@ -23,7 +23,7 @@ public class Appointment
 
     public User? User { get; set; } = null;
 
-    public Schedule? Schedule { get; set; } = null;
+    public AppointmentSchedule? Schedule { get; set; } = null;
 
     [BsonElement("createdAt")]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

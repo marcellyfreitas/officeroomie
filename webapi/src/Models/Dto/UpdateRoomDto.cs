@@ -2,14 +2,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebApi.Models.Dto;
 
-public class UpdateScheduleDto
+public class UpdateRoomDto
 {
     [Required(ErrorMessage = "Campo {0} obrigatório.")]
-    public DateTime InitialHour { get; set; }
+    [StringLength(100, ErrorMessage = "O nome não pode ter mais de 100 caracteres.")]
+    public string Name { get; set; } = "";
 
     [Required(ErrorMessage = "Campo {0} obrigatório.")]
-    public DateTime FinalHour { get; set; }
+    public string Status { get; set; } = "";
 
     [Required(ErrorMessage = "Campo {0} obrigatório.")]
-    public string MedicalId { get; set; } = "";
+    public int Capacity { get; set; } = 0;
 }

@@ -1,9 +1,9 @@
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace WebApi.Models;
 
-public class Convenio
+public class Room
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
@@ -12,17 +12,11 @@ public class Convenio
     [BsonElement("name")]
     public string Name { get; set; } = "";
 
-    [BsonElement("provider")]
-    public string Provider { get; set; } = "";
+    [BsonElement("status")]
+    public string Status { get; set; } = "";
 
-    [BsonElement("healthPlanId")]
-    public int HealthPlanId { get; set; }
-
-    [BsonElement("startDate")]
-    public DateTime StartDate { get; set; }
-
-    [BsonElement("endDate")]
-    public DateTime EndDate { get; set; }
+    [BsonElement("capacity")]
+    public int Capacity { get; set; } = 0;
 
     [BsonElement("createdAt")]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

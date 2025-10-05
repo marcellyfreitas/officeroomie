@@ -10,7 +10,7 @@ public class AppointmentViewModel
 
     public UserViewModel? User { get; set; } = null;
 
-    public ScheduleViewModel? Schedule { get; set; } = null;
+    public AppointmentScheduleViewModel? Schedule { get; set; } = null;
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 

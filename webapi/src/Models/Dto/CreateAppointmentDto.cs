@@ -8,7 +8,7 @@ public class CreateAppointmentDto
     public string UserId { get; set; } = "";
 
     [Required(ErrorMessage = "Campo {0} obrigatório.")]
-    public string ScheduleId { get; set; } = "";
+    public string AppointmentScheduleId { get; set; } = "";
 
     [Required(ErrorMessage = "Campo {0} obrigatório.")]
     public string Status { get; set; } = "";
