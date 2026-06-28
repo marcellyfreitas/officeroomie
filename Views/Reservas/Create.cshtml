@@ -1,0 +1,81 @@
+﻿@model OfficeRoomie.Models.ViewModels.ReservaCreate
+
+@{
+    ViewData["Title"] = "Nova Reserva";
+}
+
+<h1>Nova Reserva</h1>
+
+<hr />
+
+<form asp-action="Create" class="row">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group col-12 col-md-6">
+        <label asp-for="reserva.data_reserva" class="control-label"></label>
+        <input type="date" asp-for="reserva.data_reserva" class="form-control" />
+        <span asp-validation-for="reserva.data_reserva" class="text-danger"></span>
+    </div>
+
+    <div class="form-group col-12 col-md-3">
+        <label asp-for="reserva.hora_inicio" class="control-label"></label>
+        <input type="time" asp-for="reserva.hora_inicio" class="form-control" />
+        <span asp-validation-for="reserva.hora_inicio" class="text-danger"></span>
+    </div>
+
+    <div class="form-group col-12 col-md-3">
+        <label asp-for="reserva.hora_fim" class="control-label"></label>
+        <input type="time" asp-for="reserva.hora_fim" class="form-control" />
+        <span asp-validation-for="reserva.hora_fim" class="text-danger"></span>
+    </div>
+
+    <div class="form-group col-12 col-md-4">
+        <label asp-for="reserva.status" class="control-label"></label>
+        <select asp-for="reserva.status" class="form-control">
+            <option value="">Selecione</option>
+            <option value="solicitada" selected>Solicitada</option>
+            <option value="aguarando_pagamento">Aguardando pagamento</option>
+            <option value="confirmada">Confirmada</option>
+            <option value="em_andamento">Em andamento</option>
+        </select>
+        <span asp-validation-for="reserva.status" class="text-danger"></span>
+    </div>
+
+    <div class="form-group col-12 col-md-4">
+        <label asp-for="reserva.cliente_id" class="control-label"></label>
+        
+        <select asp-for="reserva.cliente_id" class="form-control">
+            <option value="">Selecione</option>
+        @foreach (var item in Model.clientes) {
+            <option value="@item.id">@item.nome</option>
+        }
+        </select>
+        
+        <span asp-validation-for="reserva.cliente_id" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group col-12 col-md-4">
+        <label asp-for="reserva.sala_id" class="control-label"></label>
+
+        <select asp-for="reserva.sala_id" class="form-control">
+            <option value="">Selecione</option>
+            @foreach (var item in Model.salas)
+            {
+                <option value="@item.id">@item.nome - @item.capacidade Pessoas</option>
+            }
+        </select>
+        
+        <span asp-validation-for="reserva.sala_id" class="text-danger"></span>
+    </div>
+
+    <div class="form-group col-12">
+        <div class="d-flex gap-1 justify-content-end">
+            <a asp-actiion="Index" class="btn btn-list">Voltar para a lista</a>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

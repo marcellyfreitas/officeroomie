@@ -1,0 +1,124 @@
+﻿@model OfficeRoomie.Models.ViewModels.ModelPaginado<Reserva>
+
+@{
+    ViewData["Title"] = "Reservas";
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Reservas</h1>
+    <a class="btn btn-primary" asp-action="Create">Nova reserva</a>
+</div>
+
+<form asp-action="Index" method="get">
+    <div class="form-group d-flex gap-2 align-items-center w-50">
+        <input type="hidden" name="active" value="@ViewBag.active" />
+        <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" class="form-control" placeholder="Pesquisar pelo nome" />
+        <button type="submit" class="btn btn-outline-primary d-flex gap-2 align-items-center">
+            <span class="iconify" data-icon="ic:baseline-search" data-inline="false"></span>
+            <span>Pesquisar</span>
+        </button>
+
+        @if (!string.IsNullOrEmpty(ViewBag.active) && ViewBag.active == "1")
+        {
+            <a asp-action="Index" asp-route-active="0" class="btn btn-outline-primary">
+                Canceladas
+            </a>
+        }
+        else
+        {
+            <a asp-action="Index" asp-route-active="1" class="btn btn-outline-primary">
+                Ativas
+            </a>
+        }
+    </div>
+</form>
+
+<div class="table-responsive">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().hora_inicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().hora_fim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().data_reserva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().protocolo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().status)
+            </th>
+            <th>
+               Cliente
+            </th>
+            <th>
+                Sala
+            </th>
+            <th>
+                Cartão
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.hora_inicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hora_fim)
+            </td>
+            <td>
+                @{
+                    DateTime dataFormatada;
+                    @(DateTime.TryParse(Model.First().data_reserva, out dataFormatada) ? @dataFormatada.ToString("dd/MM/yyyy") : "");
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.protocolo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cliente!.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sala!.nome)
+            </td>
+            <td>
+                @(item.cartao != null && !string.IsNullOrEmpty(item.cartao.numeroDoCartao)
+                    ? item.cartao.numeroDoCartao
+                    : "Não possui")
+            </td>
+            
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.id">
+                    <span class="iconify" data-icon="ic:baseline-edit" data-inline="false"></span>
+                </a> |
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.id">
+                    <span class="iconify" data-icon="ic:baseline-visibility" data-inline="false"></span>
+                </a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.id">
+                    <span class="iconify" data-icon="ic:baseline-delete" data-inline="false"></span>
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+
+<a asp-action="Index" asp-route-acive="@ViewBag.active" asp-route-searchString="@ViewData["CurrentFilter"]" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-default @prevDisabled">
+    Anterior
+</a>
+<a asp-action="Index" asp-route-acive="@ViewBag.active" asp-route-searchString="@ViewData["CurrentFilter"]" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-default @nextDisabled">
+    Próximo
+</a>
