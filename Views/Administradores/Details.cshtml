@@ -1,0 +1,30 @@
+﻿@model OfficeRoomie.Models.Administrador
+
+@{
+    ViewData["Title"] = "Detalhes do Administrador";
+}
+
+<h1>Detalhes do Administrador</h1>
+
+<div>
+    <h4>Administrador</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.email)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.id">Editar</a> |
+    <a asp-action="Index">Voltar para lista</a>
+</div>
