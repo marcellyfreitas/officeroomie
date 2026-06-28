@@ -1,0 +1,57 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: officeroomie-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: officeroomie
+      MYSQL_USER: officeroomie
+      MYSQL_PASSWORD: officeroomie_pass
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - officeroomie-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 20s
+      retries: 10
+      start_period: 30s
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: officeroomie-app
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - DatabaseProvider=MySql
+      - ConnectionStrings__MySqlConnection=Server=db;Port=3306;Database=officeroomie;Uid=officeroomie;Pwd=officeroomie_pass;
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - officeroomie-net
+
+  nginx:
+    image: nginx:alpine
+    container_name: officeroomie-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - officeroomie-net
+
+volumes:
+  mysql_data:
+
+networks:
+  officeroomie-net:
+    driver: bridge

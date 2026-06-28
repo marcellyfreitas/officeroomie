@@ -74,7 +74,45 @@ O banco de dados é criado automaticamente na primeira execução com dados inic
 
 ## Docker
 
+### Build da imagem
+
 ```bash
 docker build -t officeroomie .
 docker run -p 8080:80 officeroomie
+```
+
+### Docker Compose (produção)
+
+Sobe três serviços: banco MySQL, aplicação .NET e proxy Nginx.
+
+```bash
+docker compose up -d
+```
+
+Acesse em http://localhost
+
+#### Serviços
+
+| Serviço | Imagem | Porta |
+|---|---|---|
+| `db` | mysql:8.0 | 3306 |
+| `app` | officeroomie (build local) | 8080 |
+| `nginx` | nginx:alpine | 80 |
+
+#### Credenciais do banco
+
+- **Banco:** officeroomie
+- **Usuário:** officeroomie
+- **Senha:** officeroomie_pass
+
+#### Parar os serviços
+
+```bash
+docker compose down
+```
+
+Para remover também o volume do banco:
+
+```bash
+docker compose down -v
 ```
