@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OfficeRoomie</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/OfficeRoomie.styles.css" asp-append-version="true" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iconify/2.0.0/iconify.min.js"></script>
+    <style>
+        .home-container {
+            width: 100%;
+            min-height: calc(100vh - 120px);
+        }
+        .navbar {
+            height: 60px;
+        }
+
+        .footer {
+            height: 60px;
+        }
+    </style>
+</head>
+<body class="mb-0">
+    <div class="main-content">
+        <header class="navbar navbar-light bg-light border-bottom">
+            <div class="container d-flex justify-content-between align-items-center">
+                <a asp-action="Index" class="text-decoration-none text-black">
+                    <h4 class="text-uppercase mb-0">OfficeRoomie</h4>
+                </a>
+
+                <a class="btn btn-link" href="/dashboard">
+                    <span>Área restrita</span>
+                    <span class="iconify" data-icon="ic:outline-lock-person" data-inline="false"></span>
+                </a>
+            </div>
+
+        </header>
+
+        <main role="main">
+            <div class="home-container">
+                @RenderBody()
+            </div>
+        </main>
+
+        <footer class="bg-dark text-white pt-5 pb-4">
+            <div class="container">
+                <div class="row">
+                    <!-- Coluna de Contato -->
+                    <div class="col-md-4 mb-4">
+                        <h5>Contato</h5>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-telephone-fill"></i> Telefone: (11) 1234-5678</li>
+                            <li><i class="bi bi-envelope-fill"></i> Email: contato@exemplo.com</li>
+                            <li><i class="bi bi-geo-alt-fill"></i> Endereço: Rua Exemplo, 123, Cidade</li>
+                        </ul>
+                    </div>
+
+                    <!-- Coluna de Links Úteis -->
+                    <div class="col-md-4 mb-4">
+                        <h5>Links Úteis</h5>
+                        <ul class="list-unstyled">
+                            <li><a asp-action="Sobre" class="text-white">Sobre Nós</a></li>
+                            <li><a asp-action="Privacidade" class="text-white">Política de Privacidade</a></li>
+                            <li><a asp-action="Ajuda" class="text-white">Ajuda</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Coluna de Formas de Pagamento -->
+                    <div class="col-md-4 mb-4">
+                        <h5>Formas de Pagamento</h5>
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <span class="iconify" data-icon="ic:outline-check" data-inline="false"></span>
+                                <span>Visa</span>
+                            </li>
+                            <li class="list-inline-item">
+                                <span class="iconify" data-icon="ic:outline-check" data-inline="false"></span>
+                                <span>Mastercard</span>
+                            </li>
+                            <li class="list-inline-item">
+                                <span class="iconify" data-icon="ic:outline-check" data-inline="false"></span>
+                                <span>Paypal</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Rodapé Secundário -->
+                <div class="text-center mt-4">
+                    <p class="mb-0">&copy; 2024 OfficeRoomie. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+          const btnCta = document.querySelector(".cta-reserva");
+
+          if (btnCta) {
+            btnCta.addEventListener("click", (event) => {
+                event.preventDefault();
+
+                const listaSalas = document.querySelector(".lista-salas");
+
+                if (listaSalas) {
+                    listaSalas.scrollIntoView({ behavior: "smooth" });
+                }
+            });
+          }
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+</body>
+</html>

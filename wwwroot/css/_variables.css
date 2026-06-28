@@ -1,0 +1,21 @@
+:root {
+    --sidebar-open-width: 250px;
+    --sidebar-closed-width: 60px;
+    --navbar-height: 60px;
+    --footer-height: 60px;
+
+    --body-bg: #EAECF0;
+    --sidebar-bg: #232323;
+
+    --neutral-99: #F9FAFB;
+    --neutral-95: #F2F4F7;
+    --neutral-90: #EAECF0;
+    --neutral-80: #DADBE3;
+    --neutral-70: #A8A8B3;
+    --neutral-60: #918F97;
+    --neutral-50: #707077;
+    --neutral-40: #56565B;
+    --neutral-30: #434349;
+    --neutral-20: #2F3033;
+    --neutral-10: #1B1B1F;
+}
