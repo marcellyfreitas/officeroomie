@@ -1,0 +1,68 @@
+﻿@model OfficeRoomie.Models.ViewModels.CartoesCreate
+
+@{
+    ViewData["Title"] = "Novo Cartão";
+}
+
+<h1>Novo Cartão</h1>
+
+<h4>Cartão</h4>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" class="w-100 flex-column d-flex gap-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row gx-4 gy-4">
+                <div class="form-group col-12 col-md-6">
+                    <label asp-for="cartao.numeroDoCartao" class="control-label"></label>
+                    <input asp-for="cartao.numeroDoCartao" class="form-control" />
+                    <span asp-validation-for="cartao.numeroDoCartao" class="text-danger"></span>
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label asp-for="cartao.nomeDoTitular" class="control-label"></label>
+                    <input asp-for="cartao.nomeDoTitular" class="form-control" />
+                    <span asp-validation-for="cartao.nomeDoTitular" class="text-danger"></span>
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label asp-for="cartao.validade" class="control-label"></label>
+                    <input asp-for="cartao.validade" class="form-control" type="month" value="" />
+                    <span asp-validation-for="cartao.validade" class="text-danger"></span>
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label asp-for="cartao.cvv" class="control-label"></label>
+                    <input asp-for="cartao.cvv" class="form-control" type="number" value="" min="0" max="999" />
+                    <span asp-validation-for="cartao.cvv" class="text-danger"></span>
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label asp-for="cartao.cliente_id" class="control-label"></label>
+
+                    <select asp-for="cartao.cliente_id" class="form-control">
+                        <option value="">Selecione</option>
+                        @foreach (var item in Model.clientes)
+                        {
+                            <option value="@item.id">@item.nome</option>
+                        }
+                    </select>
+
+                    <span asp-validation-for="cartao.cliente_id" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-12">
+                    <div class="d-flex gap-2 justify-content-end">
+                        <a class="btn btn-link" style="width: 10%" asp-action="Index">Voltar para lista</a>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

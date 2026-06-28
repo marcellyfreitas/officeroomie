@@ -1,0 +1,86 @@
+﻿@model IEnumerable<OfficeRoomie.Models.Cartao>
+
+@{
+    ViewData["Title"] = "Cartões";
+}
+
+<div class="d-flex justify-content-between align-items-center gap-4 mb-4">
+    <h1>Cartões</h1>
+    <a class="btn btn-primary" asp-action="Create">Novo Cartão</a>
+</div>
+
+<div class="table-responsive">
+<table class="table">
+    <thead>
+        <tr>
+            <th width="20%">Número do Cartão</th>
+            <th width="20%">Nome do Titular</th>
+            <th width="20%">Validade</th>
+            <th width="20%">CVV</th>
+            <th width="20%">Cliente</th>
+            <th width="20%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.numeroDoCartao</td>
+                <td>@item.nomeDoTitular</td>
+                <td>@item.validade.ToString("MM/yyyy")</td>
+                <td>@item.cvv</td> 
+                <td>@item.cliente!.nome</td> 
+                <td>
+                    <a class="btn btn-danger" onclick="confirmDelete('@item.numeroDoCartao')">
+                        <span class="iconify" data-icon="ic:baseline-delete" data-inline="false"></span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+
+<!-- Modal de Confirmação -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmação de Exclusão</h5>
+            </div>
+            <div class="modal-body">
+                Deseja realmente excluir o cartão <span id="cartaoNumero"></span>?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnNao">Não</button>
+                <form id="deleteForm" method="post" asp-action="Delete">
+                    <input type="hidden" id="cartaoId" name="numeroDoCartao" />
+                    <button type="submit" class="btn btn-danger">Sim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/4+G8bE5z5Xtbs5y5nZpF5fN/3A" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-q8i/X+965DzO0rT6Dzm/sx4p9+dRXq8r5u4I1lvHpKx5PcBqQ4R2mDCAWwbj6Xa" crossorigin="anonymous"></script>
+
+    <script>
+        function confirmDelete(numeroDoCartao) {
+            // Define o número do cartão na modal
+            document.getElementById('cartaoNumero').textContent = numeroDoCartao;
+            document.getElementById('cartaoId').value = numeroDoCartao;
+
+            // Exibe o modal
+            $('#deleteModal').modal('show');
+        }
+
+        // Função para recarregar a página ao clicar em "Não"
+        $(document).ready(function () {
+            $('#btnNao').click(function () {
+                window.location.reload(); // Recarrega a página
+            });
+        });
+    </script>
+}
