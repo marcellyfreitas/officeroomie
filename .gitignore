@@ -1,0 +1,55 @@
+# .NET
+[Oo]bj/
+[Bb]in/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Visual Studio
+.vs/
+*.VisualState.xml
+TestResults/
+*.nupkg
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# VS Code
+.vscode/
+*.swp
+*.swo
+
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
+
+# Build results
+[Dd]ebug[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Ll]og/
+[Ll]ogs/
+
+# NuGet
+packages/
+*.nuget.props
+*.nuget.targets
+project.assets.json
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ASP.NET
+appsettings.Development.json
+Properties/launchSettings.json
