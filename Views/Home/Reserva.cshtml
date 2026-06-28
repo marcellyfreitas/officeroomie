@@ -1,0 +1,100 @@
+﻿@model OfficeRoomie.Models.ViewModels.ModelPaginado<Reserva>
+
+@{
+    Layout = "/Views/Shared/_HomeLayout.cshtml";
+    ViewData["Title"] = "Acompanhamento de reserva - Officeroomie";
+}
+
+<div class="container my-5">
+    <h1 class="mb-4">Acompanhe a sua reserva</h1>
+
+
+    <form asp-action="Reserva" method="get">
+        <div class="form-group d-flex gap-2 align-items-center w-100 w-md-50">
+            <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" class="form-control" placeholder="Pesquisar pelo protocolo" />
+            
+            <button type="submit" class="btn btn-outline-primary d-flex gap-2 align-items-center">
+                <span class="iconify" data-icon="ic:baseline-search" data-inline="false"></span>
+                <span>Pesquisar</span>
+            </button>
+        </div>
+    </form>
+
+
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+
+    @if (Model.Count() > 0)
+    {
+        <h1>Reserva encontrada</h1>
+
+        <div>
+            <h4>Informações da reserva</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.First().hora_inicio)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.First().hora_inicio)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.First().hora_fim)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.First().hora_fim)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.First().data_reserva)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.First().data_reserva)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.First().protocolo)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.First().protocolo)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.First().status)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.First().status)
+                </dd>
+                <dt class="col-sm-2">
+                    Cliente
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.First().cliente!.nome)
+                </dd>
+                <dt class="col-sm-2">
+                    Sala
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.First().sala!.nome)
+                </dd>
+            </dl>
+
+            @if (!@Model.First().status.ToString().Contains("cancelada"))
+            {
+            <form asp-action="Reserva">
+                <input type="hidden" asp-for="@Model.First().id" />
+                <input type="submit" value="Cancelar" class="btn btn-danger" />
+            </form>
+            }
+        </div>
+    }
+    else if (!string.IsNullOrEmpty(ViewBag.SearchString))
+    {
+        <p>Nenhuma reserva foi encontrada para esta pesquisa.</p>
+    }
+    else
+    {
+        <p>Utilize o campo acima para pesquisar o protocolo da sua reserva.</p>
+    }
+</div>

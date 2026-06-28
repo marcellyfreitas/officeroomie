@@ -1,0 +1,104 @@
+﻿@model OfficeRoomie.Models.ViewModels.ModelPaginado<Sala>
+
+@{
+    Layout = "/Views/Shared/_HomeLayout.cshtml";
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .home-banner {
+        width: 100%;
+        min-height: calc(75vh - 60px);
+        background: url('/img/background.jpg') no-repeat center center;
+        background-size: cover; 
+    }
+
+    .home-banner-content {
+        min-height: calc(75vh - 60px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+</style>
+
+<div>
+    <section class="home-banner">
+        <div class="container">
+            <div class="home-banner-content row">
+                <div class="col-12 col-md-6">
+                    <h1 class="text-white fw-normal mb-4 display-4">Conheça seu novo espaço de trabalho</h1>
+                    <button class="btn btn-success cta-reserva">Faça sua reserva </button>
+                    <a asp-action="Reserva" class="btn btn-info cta-acompanhe">
+                        <span class="iconify" data-icon="ic:baseline-search" data-inline="false"></span>
+                        <span>Acompanhar reserva </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 lista-salas">
+        <div class="container">
+            <div class="d-flex flex-column gap-4">
+                <h2>Lista de Salas</h2>
+
+                <p>Escolha entre uma variedade de salas, qual a que melhor atende suas necessidades. Reunião, treinamento, palestras, etc.</p>
+
+                @if (TempData["MensagemSucesso"] != null)
+                {
+                    <div class="alert alert-success">
+                        @TempData["MensagemSucesso"]
+                    </div>
+                }
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  g-4">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col">
+                            <div class="card h-100">
+                                <img class="card-img-top w-100 img-fluid object-fit-cover" height="200px" src="https://images.homify.com/c_fill,f_auto,h_700,q_auto/v1522702247/p/photo/image/2503431/Escritorio_B2.jpg" alt="Sala imagem ilustrativa">
+
+                                <div class="card-body">
+                                    <div class="d-flex flex-column justify-content-between flex-1 h-100">
+                                        <div>
+                                            <h5 class="card-title">@item.nome</h5>
+                                            <p class="card-text">@item.descricao</p>
+                                            <span>Espaços: @item.capacidade</span>
+                                        </div>
+
+                                        <div class="d-flex gap-2 mt-4">
+                                            <a class="btn btn-success w-100 d-flex align-items-center justify-content-center gap-2 card-link"
+                                               asp-action="ClienteReserva"
+                                               asp-route-id="@item.id">
+                                                <span class="iconify" data-icon="ic:outline-calendar-month" data-inline="false"></span>
+                                                <span class="text-uppercase">
+                                                    Reservar
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                @{
+                    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                }
+
+                <div class="d-flex gap-2 justify-content-center align-items-center">
+                    <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-link @prevDisabled">
+                        Anterior
+                    </a>
+                    <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-link @nextDisabled">
+                        Próximo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+

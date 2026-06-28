@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "/Views/Shared/_HomeLayout.cshtml";
+    ViewData["Title"] = "Ajuda";
+}
+
+<div class="container my-5">
+    <h1 class=" mb-4">Central de Ajuda</h1>
+
+    <!-- Seção de FAQ -->
+    <section class="mb-5">
+        <h2>Perguntas Frequentes</h2>
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                        Como faço para reservar uma sala?
+                    </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Selecione em uma lista variada na nossa Home Page. Escolha o dia e o horário. Receba o email de confirmação com protocolo.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                        Como posso entrar em contato com o suporte?
+                    </button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Você pode entrar em contato com o suporte através dos contatos abaixo ou enviando um email para suporte@exemplo.com.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Entre em Contato</h2>
+        <ul class="list-unstyled">
+            <li><i class="bi bi-telephone-fill"></i> Telefone: (11) 1234-5678</li>
+            <li><i class="bi bi-envelope-fill"></i> Email: contato@exemplo.com</li>
+            <li><i class="bi bi-geo-alt-fill"></i> Endereço: Rua Exemplo, 123, Cidade</li>
+        </ul>
+    </section>
+</div>
