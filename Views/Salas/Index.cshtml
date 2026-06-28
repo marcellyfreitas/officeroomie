@@ -1,0 +1,84 @@
+﻿@model OfficeRoomie.Models.ViewModels.ModelPaginado<Sala>
+
+@{
+    ViewData["Title"] = "Salas";
+}
+
+<div class="d-flex justify-content-between align-items-center gap-4 mb-4">
+    <h1>Salas</h1>
+    <a class="btn btn-primary" asp-action="Create">Nova Sala</a>
+</div>
+
+<form asp-action="Index" method="get">
+    <div class="form-group d-flex gap-2 align-items-center w-50">
+        <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" class="form-control" placeholder="Pesquisar pelo nome" />
+        <button type="submit" class="btn btn-outline-primary d-flex gap-2 align-items-center">
+            <span class="iconify" data-icon="ic:baseline-search" data-inline="false"></span>
+            <span>Pesquisar</span>
+        </button>
+    </div>
+</form>
+
+<div class="table-responsive">
+<table class="table">
+    <thead>
+        <tr>
+            <th width="25%">
+                @Html.DisplayNameFor(model => model.First().nome)
+            </th>
+            <th width="25%">
+                @Html.DisplayNameFor(model => model.First().descricao)
+            </th>
+            <th width="25%">
+                @Html.DisplayNameFor(model => model.First().capacidade)
+            </th>
+            <th width="25%">
+                @Html.DisplayNameFor(model => model.First().categoria)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.capacidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.categoria)
+            </td>
+            <td>
+                <div class="d-flex gap-1">
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.id">
+                        <span class="iconify" data-icon="ic:baseline-edit" data-inline="false"></span>
+                    </a> |
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.id">
+                        <span class="iconify" data-icon="ic:baseline-visibility" data-inline="false"></span>
+                    </a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.id">
+                        <span class="iconify" data-icon="ic:baseline-delete" data-inline="false"></span>
+                    </a>
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-default @prevDisabled">
+    Anterior
+</a>
+<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-default @nextDisabled">
+    Próximo
+</a>

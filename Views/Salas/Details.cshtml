@@ -1,0 +1,42 @@
+﻿@model OfficeRoomie.Models.Sala
+
+@{
+    ViewData["Title"] = "Detalhes do Sala";
+}
+
+<h1>Detalhes do Sala</h1>
+
+<div>
+    <h4>Sala</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.descricao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.capacidade)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.capacidade)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.categoria)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.categoria)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.id">Editar</a> |
+    <a class="btn btn-link" asp-action="Index">Voltar para lista</a>
+</div>
