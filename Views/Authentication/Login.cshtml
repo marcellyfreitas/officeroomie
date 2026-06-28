@@ -1,0 +1,35 @@
+﻿@model OfficeRoomie.Models.ViewModels.AuthenticationLoginDto;
+@{
+    Layout = "/Views/Shared/_AuthenticationLayout.cshtml";
+    ViewData["Title"] = "Login";
+}
+
+<div class="container d-flex justify-content-center align-items-center authentication-container">
+    <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
+        <h3 class="text-center mb-4">Login</h3>
+        <form method="post" action="/authentication/login">
+            @if (ViewData.ModelState.ErrorCount > 0)
+            {
+                <div class="alert alert-danger">
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                </div>
+            }
+
+            <div class="form-group mb-3">
+                <label for="email">Email</label>
+                <input required type="email" class="form-control" id="email"
+                       placeholder="Digite seu email" name="email"
+                       value="@Model?.email" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="password">Senha</label>
+                <input required type="password" class="form-control" id="password"
+                       placeholder="Digite sua senha" name="password" />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">ENTRAR</button>
+        </form>
+    </div>
+</div>
+
