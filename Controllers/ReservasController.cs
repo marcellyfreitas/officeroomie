@@ -59,7 +59,7 @@ namespace OfficeRoomie.Controllers
                 return NotFound();
             }
 
-            var reserva = await _context.Reserva
+            var reserva = await _context.Reservas
                 .Include(r => r.cliente)
                 .Include(r => r.sala)
                 .Include(r => r.cartao)
@@ -123,7 +123,7 @@ namespace OfficeRoomie.Controllers
                 return NotFound();
             }
 
-            var reserva = await _context.Reserva.FindAsync(id);
+            var reserva = await _context.Reservas.FindAsync(id);
             if (reserva == null)
             {
                 return NotFound();
@@ -149,7 +149,7 @@ namespace OfficeRoomie.Controllers
         {
             if (ModelState.IsValid)
             {
-                var reserva = await _context.Reserva
+                var reserva = await _context.Reservas
                     .Include(r => r.cliente)
                     .Include(r => r.sala)
                     .Include(r => r.cartao)
@@ -199,7 +199,7 @@ namespace OfficeRoomie.Controllers
                 return NotFound();
             }
 
-            var reserva = await _context.Reserva
+            var reserva = await _context.Reservas
                 .Include(r => r.cliente)
                 .Include(r => r.sala)
                 .Include(r => r.cartao)
@@ -216,10 +216,10 @@ namespace OfficeRoomie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var reserva = await _context.Reserva.FindAsync(id);
+            var reserva = await _context.Reservas.FindAsync(id);
             if (reserva != null)
             {
-                _context.Reserva.Remove(reserva);
+                _context.Reservas.Remove(reserva);
             }
 
             await _context.SaveChangesAsync();
@@ -231,7 +231,7 @@ namespace OfficeRoomie.Controllers
 
         private bool ReservaExists(int id)
         {
-            return _context.Reserva.Any(e => e.id == id);
+            return _context.Reservas.Any(e => e.id == id);
         }
     }
 }
