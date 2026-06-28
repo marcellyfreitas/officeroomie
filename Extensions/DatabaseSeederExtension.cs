@@ -1,4 +1,5 @@
-﻿using OfficeRoomie.Database.Seeders;
+﻿using Microsoft.EntityFrameworkCore;
+using OfficeRoomie.Database.Seeders;
 using OfficeRoomie.Database;
 
 namespace OfficeRoomie.Extensions;
@@ -11,6 +12,8 @@ static class DatabaseSeederExtension
         {
             var services = scope.ServiceProvider;
             var context = services.GetRequiredService<AppDbContext>();
+
+            context.Database.EnsureCreated();
 
             var administradorSeeder = new AdministradorSeeder(context);
             var clienteSeeder = new ClienteSeeder(context);

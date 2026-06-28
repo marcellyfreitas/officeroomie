@@ -57,5 +57,12 @@ public class AppDbContext : DbContext
 
     public DbSet<Sala> Salas { get; set; }
 
-
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Administrador>(e => e.Property(a => a.id).ValueGeneratedOnAdd());
+        modelBuilder.Entity<Sala>(e => e.Property(s => s.id).ValueGeneratedOnAdd());
+        modelBuilder.Entity<Cliente>(e => e.Property(c => c.id).ValueGeneratedOnAdd());
+        modelBuilder.Entity<Reserva>(e => e.Property(r => r.id).ValueGeneratedOnAdd());
+        modelBuilder.Entity<Cartao>(e => e.Property(c => c.id).ValueGeneratedOnAdd());
+    }
 }
