@@ -1,4 +1,5 @@
 # OfficeRoomie
+Sistema de gerenciamento de reserva de salas corporativas desenvolvido em ASP.NET Core 8.0 MVC.
 
 <div align="center">
 
@@ -15,8 +16,6 @@
 <img src="docs/imagens/acompanhe-sua-reserva-cliente.png" alt="Acompanhe sua Reserva" width="100%"/>
 
 </div>
-
-Sistema de gerenciamento de reserva de salas corporativas desenvolvido em ASP.NET Core 8.0 MVC.
 
 ## Funcionalidades
 
