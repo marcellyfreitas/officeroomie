@@ -2,10 +2,17 @@
 
 <div align="center">
 
-| | | |
-|---|---|---|
-| <img src="docs/imagens/tela-principal.png" alt="Tela Principal" width="250"/> | <img src="docs/imagens/loguin.png" alt="Login" width="250"/> | <img src="docs/imagens/salas-administrador.png" alt="Salas Administrador" width="250"/> |
-| <img src="docs/imagens/reservas-administrador.png" alt="Reservas Administrador" width="250"/> | <img src="docs/imagens/reserva-sala-cliente.png" alt="Reserva Sala Cliente" width="250"/> | <img src="docs/imagens/acompanhe-sua-reserva-cliente.png" alt="Acompanhe sua Reserva" width="250"/> |
+<img src="docs/imagens/tela-principal.png" alt="Tela Principal" width="400"/>
+
+<img src="docs/imagens/loguin.png" alt="Login" width="400"/>
+
+<img src="docs/imagens/salas-administrador.png" alt="Salas Administrador" width="400"/>
+
+<img src="docs/imagens/reservas-administrador.png" alt="Reservas Administrador" width="400"/>
+
+<img src="docs/imagens/reserva-sala-cliente.png" alt="Reserva Sala Cliente" width="400"/>
+
+<img src="docs/imagens/acompanhe-sua-reserva-cliente.png" alt="Acompanhe sua Reserva" width="400"/>
 
 </div>
 
